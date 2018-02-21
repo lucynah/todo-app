@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 import TodoList from "./todoList.jsx";
+import AddTodo from "./addTodo.jsx";
+import Todo from "./todo.jsx";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -14,35 +16,34 @@ export default class App extends React.Component {
         }
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
+        this.onDoneClick = this.onDoneClick.bind(this);
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <input placeholder="enter task" value={this.state.newToDo} onChange={this.onChange}>
-                    </input>
-                    <button type="submit">add</button>
-                </form>
+                <AddTodo onAdd={this.onSubmit} />
                 <TodoList items={this.state.items} />
             </div>
         )
     }
 
-    onSubmit(event) {
-        event.preventDefault();
-        this.setState({
-            newToDo: '',
-            items: [...this.state.items, this.state.newToDo]
-        });
+    onDeleteClick() {
+        let newItems = this.state.items.slice();
+        newItems.splice(index, index);
+        this.setState(
+            {  }
+        )
     }
 
-    onChange(event) {
-        this.setState(
-            {
-                newToDo: event.target.value
-            }
-        );
+    onDoneClick() {
+
+    }
+
+    onSubmit(newTodo) {
+        this.setState({
+            items: [...this.state.items, { name: newTodo, isDone: false }]
+        });
     }
 }
