@@ -17,16 +17,30 @@ export default class App extends React.Component {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
-        this.onDoneClick = this.onDoneClick.bind(this);
+        this.onTodoChange = this.onTodoChange.bind(this);
     }
 
     render() {
         return (
             <div>
                 <AddTodo onAdd={this.onSubmit} />
-                <TodoList items={this.state.items} />
+                <TodoList items={this.state.items} onTodoChange={this.onTodoChange}/>
             </div>
         )
+    }
+
+    onTodoChange(todo) {
+        const indexOfTodo = this.state.items.indexOf(todo);
+        
+        let newItems = this.state.items.slice().map(todo => {
+            return Object.assign({}, todo);  
+        });
+
+        newItems[indexOfTodo].isDone = !newItems[indexOfTodo].isDone;
+
+        this.setState({
+            items: newItems
+        });
     }
 
     onDeleteClick() {
@@ -35,10 +49,6 @@ export default class App extends React.Component {
         this.setState(
             {  }
         )
-    }
-
-    onDoneClick() {
-
     }
 
     onSubmit(newTodo) {

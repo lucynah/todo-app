@@ -13,7 +13,7 @@ export default class Todo extends React.PureComponent {
     render() {
         return (
             <div>
-                <input type="checkbox" checked={this.props.todo.isDone} onChange={this.onChange} />
+                <input type="checkbox" value={this.props.todo.isDone} onChange={this.onChange} />
                 <label>{this.props.todo.name}</label>
                 <button onClick={this.onDelete}>X</button>
             </div>
@@ -28,7 +28,6 @@ export default class Todo extends React.PureComponent {
 
     onChange(e) {
         console.log("change!");
-
         this.props.onChange(this.props.todo);
     }
 }
