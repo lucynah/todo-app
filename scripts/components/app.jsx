@@ -24,7 +24,7 @@ export default class App extends React.Component {
         return (
             <div>
                 <AddTodo onAdd={this.onSubmit} />
-                <TodoList items={this.state.items} onTodoChange={this.onTodoChange}/>
+                <TodoList items={this.state.items} onTodoChange={this.onTodoChange} onDeleteClick = {this.onDeleteClick}/>
             </div>
         )
     }
@@ -43,11 +43,15 @@ export default class App extends React.Component {
         });
     }
 
-    onDeleteClick() {
+    onDeleteClick(todo) {
+        const indexOfTodo = this.state.items.indexOf(todo);
+
         let newItems = this.state.items.slice();
-        newItems.splice(index, index);
+        newItems.splice(indexOfTodo, 1);
         this.setState(
-            {  }
+            { 
+                items: newItems
+             }
         )
     }
 
