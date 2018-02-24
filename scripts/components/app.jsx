@@ -2,10 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-import TodoList from "./todoList.jsx";
+import TodoList from "./todoList/todoList.jsx";
 import AddTodo from "./addTodo.jsx";
 import Todo from "./todo.jsx";
 
+const contentStyle = {
+
+}
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +26,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style = {contentStyle}>
                 <AddTodo onAdd={this.onSubmit} />
                 <TodoList items={this.state.items} onTodoChange={this.onTodoChange} onDeleteClick={this.onDeleteClick} />
             </div>
