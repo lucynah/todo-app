@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-import Todo from "./todo.jsx";
+import Todo from "../todo.jsx";
+import styles from './todoList.css';
 
 export default class TodoList extends React.PureComponent {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class TodoList extends React.PureComponent {
     render() {
         return <div>
             <ul>
-                {this.props.items.map((item, index) => <li key={index}>
+                {this.props.items.map((item, index) => <li className = "todo-list-item" key={index}>
                     <Todo todo={item} onDelete={this.onDelete} onChange={this.onChange} />
                 </li>)}
 
