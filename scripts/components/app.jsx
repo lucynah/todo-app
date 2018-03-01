@@ -86,8 +86,14 @@ export default class App extends React.Component {
     }
 
     onSubmit(newTodo) {
-        this.setState({
-            items: [...this.state.items, { name: newTodo, isDone: false }]
-        });
+        let answer = confirm("Are you sure you want to add new item?");
+        if (answer) {
+            this.setState({
+                items: [...this.state.items, { name: newTodo, isDone: false }]
+            });
+        }
+        else {
+            return false;
+        }
     }
 }
