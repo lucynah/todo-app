@@ -26,7 +26,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div style = {contentStyle}>
+            <div style={contentStyle}>
                 <AddTodo onAdd={this.onSubmit} />
                 <TodoList items={this.state.items} onTodoChange={this.onTodoChange} onDeleteClick={this.onDeleteClick} />
             </div>
@@ -70,14 +70,19 @@ export default class App extends React.Component {
 
     onDeleteClick(todo) {
         const indexOfTodo = this.state.items.indexOf(todo);
-
-        let newItems = this.state.items.slice();
-        newItems.splice(indexOfTodo, 1);
-        this.setState(
-            {
-                items: newItems
-            }
-        )
+        let answer = confirm("Are you sure you want to delete this item?");
+        if (answer) {
+            let newItems = this.state.items.slice();
+            newItems.splice(indexOfTodo, 1);
+            this.setState(
+                {
+                    items: newItems
+                }
+            )
+        }
+        else {
+            return false;
+        }
     }
 
     onSubmit(newTodo) {
